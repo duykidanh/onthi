@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WebApplication2.Models.SanPham>
+
+        <!-- Product 1 -->
+        @foreach (var item in Model)
+        {
+            <div class="product-item my-5">
+                <div class="product discount product_filter">
+                    <div class="product_image">
+                        <img src="images/@item.AnhDaiDien" alt="">
+                    </div>
+                    <div class="product_info">
+                        <h6 class="product_name"><a href="single.html">@item.TenSanPham</a></h6>
+                        <div class="product_price">$520.00<span>$590.00</span></div>
+                    </div>
+                </div>
+                <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+            </div>
+
+        }
+<div class="product-item my-5">
+    <div class="product discount product_filter">
+        <div class="product_image">
+            <img src="~/images/product_1.png" alt="">
+        </div>
+        <div class="product_info">
+            <h6 class="product_name"></h6>
+            <div class="product_price"></div>
+        </div>
+    </div>
+    <div class="red_button add_to_cart_button">
+        @Html.ActionLink("Thêm sản phẩm", "Create", "SanPhams")
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WebApplication2.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="new_arrivals">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_title new_arrivals_title">
+                    <h2>New Arrivals</h2>
+                    <h3 style="border:solid">Huỳnh Nguyễn Anh Duy</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <div class="new_arrivals_sorting">
+                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                        <li class="btn-PhanLoai grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" cate-id="all">Tất cả sản phẩm</li>
+                        @foreach(var item in ViewBag.listPhanLoai)
+            {
+                    <li class="btn-PhanLoai grid_sorting_button button d-flex flex-column justify-content-center align-items-center" cate-id="@item.MaPhanLoai">@item.PhanLoaiChinh</li>
+            }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row product-container">
+
+                    <!-- Product 1 -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="product-item my-5">
+                            <div class="product discount product_filter">
+                                <div class="product_image">
+                                    <img src="images/@item.AnhDaiDien" alt="">
+                                </div>
+                                <div class="product_info">
+                                    <h6 class="product_name"><a href="single.html">@item.TenSanPham</a></h6>
+                                    <div class="product_price">$520.00<span>$590.00</span></div>
+                                </div>
+                            </div>
+                            <div class="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+                        </div>
+
+                    }
+                    <div class="product-item my-5">
+                        <div class="product discount product_filter">
+                            <div class="product_image">
+                                <img src="~/images/product_1.png" alt="">
+                            </div>
+                            <div class="product_info">
+                                <h6 class="product_name"></h6>
+                                <div class="product_price"></div>
+                            </div>
+                        </div>
+                        <div class="red_button add_to_cart_button">
+                            @Html.ActionLink("Thêm sản phẩm", "Create", "SanPhams")
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/js/jquery-3.2.1.min.js"></script>
+<script src="~/Content/styles/bootstrap4/popper.js"></script>
+<script src="~/Content/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="~/Scripts/plugins/Isotope/isotope.pkgd.min.js"></script>
+<script src="~/Scripts/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="~/Scripts/plugins/easing/easing.js"></script>
+<script src="~/Scripts/js/custom.js"></script>
+<script>
+    $(".btn-PhanLoai").click(function () {
+        const maPhanLoai = $(this).attr("cate-id");
+        console.log(maPhanLoai)
+        $.ajax({
+            url: `SanPhams/ByCategory?cateid=${maPhanLoai}`,
+            success: function (result) {
+                $(".product-container").html(result);
+            }
+        })
+    })
+</script>
