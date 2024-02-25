@@ -1,6 +1,9 @@
 {
-  "id":0,
-  "name":"nguyen van a",
-  "email":"test123@gmail.com",
-  "pass":"test123"
+  "User": [
+    {
+      "id": 0,
+      "email": "test123@gmail.com",
+      "pass": "test123"
+    }
+  ]
 }
